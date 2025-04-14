@@ -34,6 +34,7 @@ import SwiftUI
                             .multilineTextAlignment(.center)
                         
                        Text ("This is my first change!")
+                        Text ("This is my second change!")
 
                     }
                     
