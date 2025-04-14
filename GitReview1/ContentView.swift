@@ -6,61 +6,55 @@
 //
 
 import SwiftUI
-import SwiftData
+    struct ContentView: View {
+        var body: some View {
+            ZStack {
+                Color(.systemGreen)
+                    .ignoresSafeArea()
 
-struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+                VStack(alignment: .leading)
+                {
+                    Image("Spring")
+                        .resizable()
+                        .cornerRadius(20)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(maxWidth: 390)
+                        
+                    
+                    Image ("bunny")
+                        .resizable()
+                        .cornerRadius(20)
+                        .aspectRatio(contentMode: .fit)
 
-    var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
+                    HStack {
+                        Text("🌷Spring has sprung!🌷")
+                            .padding(.horizontal)
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .multilineTextAlignment(.center)
+                        
+                        Text ("This is my change")
+
                     }
-                }
-                .onDelete(perform: deleteItems)
-            }
-#if os(macOS)
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-#endif
-            .toolbar {
-#if os(iOS)
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-#endif
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    
+                    Button ("Click Me")
+                    {
+                        print ("button tapped")
                     }
+                    .padding(.horizontal, 130)
+                    .foregroundColor(Color.white)
+                    .background (Color.pink)
+                  
+                   
                 }
-            }
-        } detail: {
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+                .padding()
             }
         }
     }
-}
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView()
+        }
+    }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
-}
+
