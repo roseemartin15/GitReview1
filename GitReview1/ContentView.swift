@@ -35,6 +35,7 @@ import SwiftUI
                         
                         Text ("This is my change")
                         Text ("This is my second change")
+                        Text ("This is my step 6 commit")
 
                     }
                     
