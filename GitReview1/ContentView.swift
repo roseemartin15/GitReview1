@@ -37,6 +37,7 @@ import SwiftUI
                         Text ("This is my second change!")
                         Text ("This is my third change!")
                         Text ("My last change!")
+                        Text ("This is my github message!")
 
                     }
                     
